@@ -8,32 +8,46 @@
 
 // @todo: Вывести карточки на страницу
 
-const content = document.querySelector('.content');
-const placesList = content.querySelector('.places__list');
+const placesList = document.querySelector('.places__list');
+const cardTemplate = document.querySelector('#card-template').content;
+const placeholder = 'images/placeholder.jpg';
 
 function createCard(initialcard, deleteCard) {
-  const cardTemplate = document.querySelector('#card-template').content;
-  
-  for (let i = 0; i < initialcard.length; i++) {
-    const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+  const image = cardElement.querySelector('.card__image');
+  const title = cardElement.querySelector('.card__title');
+  const deleteButton = cardElement.querySelector('.card__delete-button');
 
-    cardElement.querySelector('.card__image').setAttribute('src', initialcard[i].link); 
-    cardElement.querySelector('.card__title').textContent = initialcard[i].name;
-
-    cardElement.querySelector('.card__delete-button').addEventListener('click', function(evt) {
-      deleteCard(evt);
-    });
-  
-    placesList.append(cardElement);
+  if (initialcard.link) {
+    image.setAttribute('src', initialcard.link);
+    image.setAttribute('alt', initialcard.name);
+  } else {
+    image.setAttribute('src', placeholder);
+    image.setAttribute('alt', 'Без названия');
   }
-  
+
+  if (initialcard.name) {
+    title.textContent = initialcard.name;
+  } else {
+    title.textContent = 'Без названия';
+  }
+
+  deleteButton.addEventListener('click', function() {
+    deleteCard(cardElement);
+  });
+
+  return cardElement;
 }
 
-const deleteCard = (evt) => {
-  const card = evt.target.closest('.card');
+const deleteCard = (card) => {
   if (card) {
     card.remove();
   }
 };
 
-createCard(initialCards, deleteCard);
+initialCards.forEach(i => {
+  if (i) {
+    placesList.append(createCard(i, deleteCard));
+  }
+});
+
