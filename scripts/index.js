@@ -8,6 +8,8 @@
 
 // @todo: Вывести карточки на страницу
 
+import './styles/index.css';
+
 const placesList = document.querySelector('.places__list');
 const cardTemplate = document.querySelector('#card-template').content;
 const placeholder = 'images/placeholder.jpg';
