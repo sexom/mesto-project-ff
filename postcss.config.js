@@ -1,10 +1,11 @@
 // postcss.config.js
 
 // подключите плагины в файл
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
 
-module.exports = {
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
+
+export default {
   // подключите плагины к PostCSS
   plugins: [
     // подключите autoprefixer

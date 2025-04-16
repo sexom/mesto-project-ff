@@ -1,0 +1,23 @@
+[33mcommit 4a271639a0fe4de48e8403d9065fefff4de4f58c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: desperhell <volckov.prohor@yandex.ru>
+Date:   Wed Apr 9 11:57:01 2025 +0700
+
+    backup сборки
+
+[33mcommit 499e39b329a2c649679bf5d55aa797c3feb25bb5[m
+Author: desperhell <volckov.prohor@yandex.ru>
+Date:   Mon Mar 17 17:54:41 2025 +0700
+
+    Рефакторинг
+
+[33mcommit 8ba398f8dcbafc826b842cd8f9fa02f14a37ec94[m
+Author: desperhell <volckov.prohor@yandex.ru>
+Date:   Sun Mar 16 22:05:23 2025 +0700
+
+    сделал удаление и появление карточек
+
+[33mcommit eae24ddff66ab5eff2a0d4b0007afea2677e435b[m
+Author: Prokhor Volkov <volckov.prohor@yandex.com>
+Date:   Sat Mar 15 20:45:42 2025 +0700
+
+    Initial commit

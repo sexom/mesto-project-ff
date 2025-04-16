@@ -12,9 +12,10 @@
   },
   "license": "ISC",
   "author": "Prokhor Volkov",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
+    "test": "webpack",
     "build": "rd /s /q dist && webpack --mode production",
     "dev": "webpack serve --open"
   },

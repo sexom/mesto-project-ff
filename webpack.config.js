@@ -1,26 +1,43 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-module.exports = {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+export default {
   entry: {
-    main: './src/index.js'
+    main: './src/scripts/index.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
-    publicPath: '',
+    publicPath: '/',
   },
   mode: 'development',
   devServer: {
-    static: path.resolve(__dirname, './dist'),
+    static: {
+    directory: path.join(__dirname, 'dist'), // Указываем явно папку dist
+    publicPath: '/', // Важно для корректных путей!
+    },
+    hot: true,
     open: true,
     compress: true,
-    port: 8080
+    port: 4000
+  },
+  resolve: {
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    alias: {
+      '@': path.resolve(__dirname, 'src') // Для абсолютных путей
+    },
+    extensions: ['.js', '.css']
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.js$/,
         use: 'babel-loader',
         exclude: '/node_modules/'
@@ -28,10 +45,15 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
         type: 'asset/resource',
+        generator: {
+          filename: 'images/[name][ext]'
+        }
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, {
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
             loader: 'css-loader',
             options: {
               importLoaders: 1
@@ -48,6 +70,5 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
-
   ]
 }

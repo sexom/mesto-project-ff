@@ -10,8 +10,9 @@ const presets = [
 
     // использовать полифилы для браузеров из свойства target
     // по умолчанию babel использует полифилы библиотеки core-js
-    useBuiltIns: "entry"
+    useBuiltIns: "entry",
+    corejs: "3.41.0"
   }]
 ];
 
-module.exports = { presets };
+export default { presets };
