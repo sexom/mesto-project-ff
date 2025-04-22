@@ -4,22 +4,6 @@ import { openCard } from './modal.js';
 import placeholder from 'images/placeholder.jpg';
 
 import { placesList, cardTemplate, plug } from '../scripts/index.js';
-// console.log('cards.js:', placesList);
-
-// тест
-
-// import {cardTemplate} from '../../scripts/index.js';
-// import { placesList } from '../../scripts/index.js';
-// import { placesList, cardTemplate } from './constants.js';
-
-// console.log(placesList);
-// console.log(cardTemplate);
-
-// const placesList = document.querySelector('.places__list');
-
-// export {placesList}
-
-// const cardTemplate = document.querySelector('#card-template').content;
 
 function createCard(InitialCard, deleteCard, likeCard, openCard) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -76,7 +60,5 @@ function spawnCards() {
     }
   });
 }
-
-// spawnCards();
 
 export { createCard, deleteCard, likeCard, spawnCards };
