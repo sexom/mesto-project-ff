@@ -1,5 +1,3 @@
-
-
 function closeModalESC(evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_is-opened');
@@ -14,12 +12,12 @@ function closeModal(popup) {
   document.removeEventListener('keydown', closeModalESC);
 }
 
-
-function openModal (evt, cardElement) {
-  if (cardElement && 
-   !evt.target.classList.contains('card__delete-button') &&
-   !evt.target.classList.contains('card__like-button'))
-   {
+function openModal(evt, cardElement) {
+  if (
+    cardElement &&
+    !evt.target.classList.contains('card__delete-button') &&
+    !evt.target.classList.contains('card__like-button')
+  ) {
     const popupTypeImage = document.querySelector('.popup_type_image');
     let popupImage = popupTypeImage.querySelector('.popup__image');
     let popupTitle = popupTypeImage.querySelector('.popup__caption');
@@ -32,4 +30,8 @@ function openModal (evt, cardElement) {
   }
 }
 
-export { closeModalESC as escape, openModal as openCard, closeModal as closePopup }
+export {
+  closeModalESC as escape,
+  openModal as openCard,
+  closeModal as closePopup,
+};

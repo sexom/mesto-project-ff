@@ -1,8 +1,7 @@
 import { InitialCards } from '../../scripts/initialCards.js';
 // import { placesList } from '../scripts/index.js';
-import { openCard } from './modal.js'
+import { openCard } from './modal.js';
 import placeholder from 'images/placeholder.jpg';
-
 
 import { placesList, cardTemplate, plug } from '../../scripts/index.js';
 // console.log('cards.js:', placesList);
@@ -15,7 +14,6 @@ import { placesList, cardTemplate, plug } from '../../scripts/index.js';
 
 // console.log(placesList);
 // console.log(cardTemplate);
-
 
 // const placesList = document.querySelector('.places__list');
 
@@ -43,22 +41,20 @@ function createCard(InitialCard, deleteCard, likeCard, openCard) {
     title.textContent = plug;
   }
 
-  deleteButton.addEventListener('click', function() {
+  deleteButton.addEventListener('click', function () {
     deleteCard(cardElement);
   });
 
-  likeButton.addEventListener('click', function() {
+  likeButton.addEventListener('click', function () {
     likeCard(cardElement);
   });
 
-  cardElement.addEventListener('click', function(evt) {
+  cardElement.addEventListener('click', function (evt) {
     openCard(evt, cardElement);
   });
 
-
   return cardElement;
 }
-
 
 const deleteCard = (card) => {
   if (card) {
@@ -71,17 +67,16 @@ const likeCard = (card) => {
     const likeButton = card.querySelector('.card__like-button');
     likeButton.classList.toggle('card__like-button_is-active');
   }
-}
+};
 
-function spawnCards () {
-  InitialCards.forEach(i => {
+function spawnCards() {
+  InitialCards.forEach((i) => {
     if (i) {
       placesList.append(createCard(i, deleteCard, likeCard, openCard));
     }
   });
 }
 
-
 // spawnCards();
 
-export { createCard, deleteCard, likeCard, spawnCards }
+export { createCard, deleteCard, likeCard, spawnCards };
