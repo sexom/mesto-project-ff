@@ -50,7 +50,7 @@ function createCard(InitialCard, deleteCard, likeCard, openCard) {
   });
 
   cardElement.addEventListener('click', function (evt) {
-    openModal(evt, cardElement);
+    openCard(evt, cardElement);
   });
 
   return cardElement;
