@@ -10,7 +10,7 @@ import logo from 'images/logo.svg';
 import avatar from 'images/avatar.jpg';
 
 import { spawnCards } from '../components/card.js';
-import { escape, closePopup } from '../components/modal.js';
+import { closeModalESC, closeModal } from '../components/modal.js';
 
 function popupAnimated() {
   document.querySelectorAll('.popup').forEach((i) => {
@@ -82,7 +82,7 @@ document.addEventListener('click', function (evt) {
   if (evt.target.classList.contains('profile__edit-button')) {
     popupEdit.classList.toggle('popup_is-opened');
     fillFields(nameInput, jobInput, profileTitle, profileDescription);
-    document.addEventListener('keydown', escape);
+    document.addEventListener('keydown', closeModalESC);
     formEdit.addEventListener('submit', function (evt) {
       handleFormSubmit(
         evt,
@@ -98,7 +98,7 @@ document.addEventListener('click', function (evt) {
 
   if (evt.target.classList.contains('profile__add-button')) {
     popupNewCard.classList.toggle('popup_is-opened');
-    document.addEventListener('keydown', escape);
+    document.addEventListener('keydown', closeModalESC);
     formNewCard.removeEventListener('submit', handleFormSubmit);
     formNewCard.addEventListener('submit', function (evt) {
       handleFormSubmit(
@@ -119,10 +119,12 @@ document.addEventListener('click', function (evt) {
     evt.target === popupNewCard ||
     evt.target === popupTypeImage
   ) {
-    popup.classList.toggle('popup_is-opened');
-    closePopup(popup);
+    document.removeEventListener('keydown', closeModalESC);
+    closeModal(popup);
   }
 });
+
+
 
 function fillFields(name, job, title, description) {
   name.value = title.textContent;

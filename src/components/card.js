@@ -1,9 +1,9 @@
-import { InitialCards } from '../../scripts/initialCards.js';
+import { InitialCards } from '../scripts/initialCards.js';
 // import { placesList } from '../scripts/index.js';
 import { openCard } from './modal.js';
 import placeholder from 'images/placeholder.jpg';
 
-import { placesList, cardTemplate, plug } from '../../scripts/index.js';
+import { placesList, cardTemplate, plug } from '../scripts/index.js';
 // console.log('cards.js:', placesList);
 
 // тест
@@ -50,7 +50,7 @@ function createCard(InitialCard, deleteCard, likeCard, openCard) {
   });
 
   cardElement.addEventListener('click', function (evt) {
-    openCard(evt, cardElement);
+    openModal(evt, cardElement);
   });
 
   return cardElement;

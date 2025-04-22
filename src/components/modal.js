@@ -12,18 +12,20 @@ function closeModal(popup) {
   document.removeEventListener('keydown', closeModalESC);
 }
 
-function openModal(evt, cardElement) {
+
+
+function openCard(evt, cardElement) {
   if (
     cardElement &&
     !evt.target.classList.contains('card__delete-button') &&
     !evt.target.classList.contains('card__like-button')
   ) {
     const popupTypeImage = document.querySelector('.popup_type_image');
+    popupTypeImage.classList.toggle('popup_is-opened');
     let popupImage = popupTypeImage.querySelector('.popup__image');
     let popupTitle = popupTypeImage.querySelector('.popup__caption');
     let elementImage = cardElement.querySelector('.card__image').src;
     let elementText = cardElement.querySelector('.card__title').textContent;
-    popupTypeImage.classList.toggle('popup_is-opened');
     popupImage.src = elementImage;
     popupTitle.textContent = elementText;
     document.addEventListener('keydown', closeModalESC);
@@ -31,7 +33,7 @@ function openModal(evt, cardElement) {
 }
 
 export {
-  closeModalESC as escape,
-  openModal as openCard,
-  closeModal as closePopup,
+  closeModalESC,
+  openCard,
+  closeModal,
 };
