@@ -19,7 +19,7 @@
     "build": "rd /s /q dist && webpack --mode production",
     "dev": "webpack serve --open",
     "checkJs": "prettier --check \"./src/**/**/*.js\"",
-    "formatJs": "prettier --write \"./src/**/**/*.js\""
+    "fixJs": "prettier --write \"./src/**/**/*.js\""
   },
   "devDependencies": {
     "@babel/core": "^7.26.10",
