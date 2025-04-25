@@ -44,52 +44,52 @@ function openCard(evt, cardElement) {
   ) {
     const popupTypeImage = document.querySelector('.popup_type_image');
     popupTypeImage.classList.toggle('popup_is-opened');
-    let popupImage = popupTypeImage.querySelector('.popup__image');
-    let popupTitle = popupTypeImage.querySelector('.popup__caption');
-    let elementImage = cardElement.querySelector('.card__image').src;
-    let elementText = cardElement.querySelector('.card__title').textContent;
+    const popupImage = popupTypeImage.querySelector('.popup__image');
+    const popupTitle = popupTypeImage.querySelector('.popup__caption');
+    const elementImage = cardElement.querySelector('.card__image').src;
+    const elementText = cardElement.querySelector('.card__title').textContent;
     popupImage.src = elementImage;
     popupTitle.textContent = elementText;
     document.addEventListener('keydown', closeModalESC);
   }
 }
 
-export default function handleFormSubmit(
+function handleFormSubmit(
   evt,
-  element1,
-  element2,
-  input1,
-  input2
+  titleOfCardOrProfile,
+  descriptionOrCardImage,
+  inputName,
+  inputDescriptionOrUrl
 ) {
   evt.preventDefault();
-  const form = evt.currentTarget;
-  const value1 = input1.value;
-  const value2 = input2.value;
-  let popup = form.closest('.popup');
+  const formCurrentTarget = evt.currentTarget;
+  const valueName = inputName.value;
+  const valueOfDescrtionOrUrl = inputDescriptionOrUrl.value;
+  const popupClosestForm = formCurrentTarget.closest('.popup');
 
-  if (popup === popupNewCard) {
-    if (!value1.trim() || !value2.trim()) {
+  if (popupClosestForm === popupNewCard) {
+    if (!valueName.trim() || !valueOfDescrtionOrUrl.trim()) {
       return 0;
     } else {
       const newObject = {
-        name: value1,
-        link: value2,
+        name: valueName,
+        link: valueOfDescrtionOrUrl,
       };
       initialCards.unshift(newObject);
       placesList.innerHTML = '';
       spawnCards();
     }
 
-    form.reset();
+    formCurrentTarget.reset();
   }
 
-  if (element1 && element2) {
-    element1.textContent = input1.value;
-    element2.textContent = input2.value;
+  if (titleOfCardOrProfile && descriptionOrCardImage) {
+    titleOfCardOrProfile.textContent = inputName.value;
+    descriptionOrCardImage.textContent = inputDescriptionOrUrl.value;
   } else {
     console.error('Элементы карточки не найдены!');
   }
-  popup.classList.remove('popup_is-opened');
+  popupClosestForm.classList.remove('popup_is-opened');
 }
 
 spawnCards();
@@ -97,20 +97,83 @@ spawnCards();
 popupAnimated();
 
 document.addEventListener('click', function (evt) {
-  let popup = evt.target.closest('.popup');
+  const popup = evt.target.closest('.popup');
   const popupEditProfile = document.querySelector('.popup_type_edit');
   const popupCardImage = document.querySelector('.popup_type_image');
 
   // open popup edit
 
+  // if (evt.target.classList.contains('profile__edit-button')) {
+  //   openModal(popupEditProfile);
+  // }
+
+  
   if (evt.target.classList.contains('profile__edit-button')) {
     openModal(popupEditProfile);
+
+    const formEditProfile = document.forms['edit-profile'];
+
+    const inputProfileName = formEditProfile.querySelector(
+      '.popup__input_type_name'
+    );
+    const inputProfileDescription = formEditProfile.querySelector(
+      '.popup__input_type_description'
+    );
+
+    const profileTitle = document.querySelector('.profile__title');
+    const profileDescription = document.querySelector('.profile__description');
+
+    function fillFields(name, job, title, description) {
+      name.value = title.textContent;
+      job.value = description.textContent;
+    }
+
+    fillFields(
+      inputProfileName,
+      inputProfileDescription,
+      profileTitle,
+      profileDescription
+    );
+
+    formEditProfile.addEventListener('submit', function (evt) {
+      handleFormSubmit(
+        evt,
+        profileTitle,
+        profileDescription,
+        inputProfileName,
+        inputProfileDescription
+      );
+    });
+
+
   }
 
   // open popup new card
 
   if (evt.target.classList.contains('profile__add-button')) {
     openModal(popupNewCard);
+
+    document.addEventListener('keydown', closeModalESC);
+    const formNewPlace = document.forms['new-place'];
+    const inputNameNewPlace = formNewPlace.querySelector(
+      '.popup__input_type_card-name'
+    );
+    const inputUrlNewPlace = formNewPlace.querySelector(
+      '.popup__input_type_url'
+    );
+    const cardImageTemplate = document.querySelector('.card__image');
+    const cardTitleTemplate = document.querySelector('.card__title');
+
+    formNewPlace.removeEventListener('submit', handleFormSubmit);
+    formNewPlace.addEventListener('submit', function (evt) {
+      handleFormSubmit(
+        evt,
+        cardTitleTemplate,
+        cardImageTemplate,
+        inputNameNewPlace,
+        inputUrlNewPlace
+      );
+    });
   }
 
   // close popup
