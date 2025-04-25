@@ -57,23 +57,23 @@ function openCard(evt, cardElement) {
 function handleFormSubmit(
   evt,
   titleOfCardOrProfile,
-  descriptionOrCardImage,
+  descriptionOrImage,
   inputName,
   inputDescriptionOrUrl
 ) {
   evt.preventDefault();
   const formCurrentTarget = evt.currentTarget;
-  const valueName = inputName.value;
-  const valueOfDescrtionOrUrl = inputDescriptionOrUrl.value;
+  const enteredName = inputName.value;
+  const enteredOfDescrtionOrUrl = inputDescriptionOrUrl.value;
   const popupClosestForm = formCurrentTarget.closest('.popup');
 
   if (popupClosestForm === popupNewCard) {
-    if (!valueName.trim() || !valueOfDescrtionOrUrl.trim()) {
+    if (!enteredName.trim() || !enteredOfDescrtionOrUrl.trim()) {
       return 0;
     } else {
       const newObject = {
-        name: valueName,
-        link: valueOfDescrtionOrUrl,
+        name: enteredName,
+        link: enteredOfDescrtionOrUrl,
       };
       initialCards.unshift(newObject);
       placesList.innerHTML = '';
@@ -83,9 +83,9 @@ function handleFormSubmit(
     formCurrentTarget.reset();
   }
 
-  if (titleOfCardOrProfile && descriptionOrCardImage) {
+  if (titleOfCardOrProfile && descriptionOrImage) {
     titleOfCardOrProfile.textContent = inputName.value;
-    descriptionOrCardImage.textContent = inputDescriptionOrUrl.value;
+    descriptionOrImage.textContent = inputDescriptionOrUrl.value;
   } else {
     console.error('Элементы карточки не найдены!');
   }
@@ -101,13 +101,6 @@ document.addEventListener('click', function (evt) {
   const popupEditProfile = document.querySelector('.popup_type_edit');
   const popupCardImage = document.querySelector('.popup_type_image');
 
-  // open popup edit
-
-  // if (evt.target.classList.contains('profile__edit-button')) {
-  //   openModal(popupEditProfile);
-  // }
-
-  
   if (evt.target.classList.contains('profile__edit-button')) {
     openModal(popupEditProfile);
 
