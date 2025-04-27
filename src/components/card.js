@@ -1,6 +1,6 @@
 import placeholder from '../images/placeholder.jpg';
 
-export default function cardData(InitialCard, deleteCard, likeCard, openCard) {
+export default function cardData(InitialCard, openCard) {
   const cardTemplate = document.querySelector('#card-template').content;
   const plug = 'Без названия';
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -36,3 +36,18 @@ export default function cardData(InitialCard, deleteCard, likeCard, openCard) {
 
   return cardElement;
 }
+
+const deleteCard = (card) => {
+  if (card) {
+    card.remove();
+  }
+};
+
+const likeCard = (card) => {
+  if (card) {
+    const likeButton = card.querySelector('.card__like-button');
+    likeButton.classList.toggle('card__like-button_is-active');
+  }
+};
+
+export { deleteCard, likeCard }

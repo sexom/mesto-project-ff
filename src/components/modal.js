@@ -18,4 +18,10 @@ function openModal(popup) {
   document.addEventListener('keydown', closeModalESC);
 }
 
-export { closeModalESC, closeModal, openModal };
+function closeByOverlayClick(evt, popup) {
+  if (evt.target === popup) {
+    closeModal(popup);
+  }
+}
+
+export { closeModalESC, closeModal, openModal, closeByOverlayClick };
