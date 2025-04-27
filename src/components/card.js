@@ -50,4 +50,4 @@ const likeCard = (card) => {
   }
 };
 
-export { deleteCard, likeCard }
+export { deleteCard, likeCard };

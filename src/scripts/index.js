@@ -3,7 +3,11 @@ import initialCards from './initialCards.js';
 import cardData from '../components/card.js';
 import logo from 'images/logo.svg';
 import avatar from 'images/avatar.jpg';
-import { closeModal, openModal, closeByOverlayClick } from '../components/modal.js';
+import {
+  closeModal,
+  openModal,
+  closeByOverlayClick,
+} from '../components/modal.js';
 
 const placesList = document.querySelector('.places__list');
 
@@ -24,9 +28,7 @@ const formNewPlace = document.forms['new-place'];
 const inputNameNewPlace = formNewPlace.querySelector(
   '.popup__input_type_card-name'
 );
-const inputUrlNewPlace = formNewPlace.querySelector(
-  '.popup__input_type_url'
-);
+const inputUrlNewPlace = formNewPlace.querySelector('.popup__input_type_url');
 
 const formEditProfile = document.forms['edit-profile'];
 const inputProfileName = formEditProfile.querySelector(
@@ -77,11 +79,7 @@ popupTypeImage.addEventListener('click', (evt) => {
 // Установка один раз для каждой формы в глобальной области видимости.
 
 formNewPlace.addEventListener('submit', function (evt) {
-  submitAddCardForm(
-    evt,
-    inputNameNewPlace,
-    inputUrlNewPlace
-  );
+  submitAddCardForm(evt, inputNameNewPlace, inputUrlNewPlace);
 });
 
 formEditProfile.addEventListener('submit', function (evt) {
@@ -92,8 +90,7 @@ formEditProfile.addEventListener('submit', function (evt) {
     inputProfileName,
     inputProfileDescription
   );
-  
-})
+});
 
 fillFields(
   inputProfileName,
@@ -101,7 +98,6 @@ fillFields(
   profileTitle,
   profileDescription
 );
-
 
 function popupAnimated() {
   document.querySelectorAll('.popup').forEach((i) => {
@@ -137,7 +133,7 @@ function openCard(evt, cardElement) {
   }
 }
 
-function submitEditProfileForm (
+function submitEditProfileForm(
   evt,
   profileName,
   profileDescription,
@@ -154,11 +150,7 @@ function submitEditProfileForm (
   closeModal(popupEditProfile);
 }
 
-function submitAddCardForm(
-  evt,
-  inputNameNewPlace,
-  inputUrlNewPlace
-) {
+function submitAddCardForm(evt, inputNameNewPlace, inputUrlNewPlace) {
   evt.preventDefault();
   const formCurrentTarget = evt.currentTarget;
   const enteredName = inputNameNewPlace.value;
@@ -187,6 +179,5 @@ function submitAddCardForm(
 spawnCards();
 
 popupAnimated();
-
 
 export { openCard };
