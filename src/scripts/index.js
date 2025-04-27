@@ -165,7 +165,6 @@ function submitAddCardForm(evt, inputNameNewPlace, inputUrlNewPlace) {
         name: enteredName,
         link: enteredUrlNewPlace,
       };
-      // initialCards.unshift(newObject);
       placesList.innerHTML = '';
       placesList.append(cardData(newObject, openCard));
       spawnCards();
