@@ -50,6 +50,12 @@ btnAddProfile.addEventListener('click', () => {
 
 btnEditProfile.addEventListener('click', () => {
   openModal(popupEditProfile);
+  fillFields(
+    inputProfileName,
+    inputProfileDescription,
+    profileTitle,
+    profileDescription
+  );  
 });
 
 btnClosePopupEdit.addEventListener('click', () => {
@@ -91,13 +97,6 @@ formEditProfile.addEventListener('submit', function (evt) {
     inputProfileDescription
   );
 });
-
-fillFields(
-  inputProfileName,
-  inputProfileDescription,
-  profileTitle,
-  profileDescription
-);
 
 function popupAnimated() {
   document.querySelectorAll('.popup').forEach((i) => {
@@ -165,18 +164,15 @@ function submitAddCardForm(evt, inputNameNewPlace, inputUrlNewPlace) {
         name: enteredName,
         link: enteredUrlNewPlace,
       };
-      placesList.innerHTML = '';
-      placesList.append(cardData(newObject, openCard));
-      spawnCards();
+      placesList.prepend(cardData(newObject, openCard));
     }
-
     formCurrentTarget.reset();
     closeModal(popupNewCard);
   }
+
 }
 
 spawnCards();
-
 popupAnimated();
 
 export { openCard };
